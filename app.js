@@ -29,8 +29,8 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-// 兼容多种部署环境
-const PORT = process.env.PORT || 3000;
+// 兼容多种部署环境 - 强制使用 3000 端口，忽略 Railway 的 PORT 变量
+const PORT = 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`>>> My Node.js App is running on port ${PORT} <<<`);
 });
