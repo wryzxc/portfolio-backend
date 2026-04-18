@@ -27,11 +27,22 @@ app.use('/api/dashboard', dashboardRoutes);
 
 app.use(errorHandler);
 
-// Vercel 部署时不需要 listen，直接导出 app
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(port, () => {
-    console.log(`服务器运行在 http://localhost:${port}`);
-  });
-}
+// 兼容多种部署环境
+const startServer = async () => {
+  try {
+    // Railway/Render 等平台使用 process.env.PORT
+    // Vercel serverless 不需要 listen
+    if (!process.env.VERCEL) {
+      const port = process.env.PORT || 8000;
+      app.listen(port, '0.0.0.0', () => {
+        console.log(`服务器运行在 http://0.0.0.0:${port}`);
+      });
+    }
+  } catch (error) {
+    console.error('启动服务器失败:', error);
+  }
+};
+
+startServer();
 
 module.exports = app;
