@@ -7,13 +7,11 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": ["express", "sqlite3", "sequelize", "jwt"],
+  "keywords": ["express", "jwt"],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0",
-    "sqlite3": "^5.0.0",
-    "sequelize": "^6.37.3",
     "jsonwebtoken": "^9.0.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
