@@ -1,5 +1,4 @@
 const express = require('express');
-const helmet = require('helmet');
 const corsMiddleware = require('./middleware/cors');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -11,9 +10,7 @@ const visitRoutes = require('./routes/visit');
 const dashboardRoutes = require('./routes/dashboard');
 
 const app = express();
-const port = 8000;
 
-app.use(helmet());
 app.use(corsMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
