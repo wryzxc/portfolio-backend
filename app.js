@@ -27,16 +27,11 @@ app.use('/api/dashboard', dashboardRoutes);
 
 app.use(errorHandler);
 
-const startServer = async () => {
-  try {
-    app.listen(port, () => {
-      console.log(`服务器运行在 http://localhost:${port}`);
-    });
-  } catch (error) {
-    console.error('启动服务器失败:', error);
-  }
-};
-
-startServer();
+// Vercel 部署时不需要 listen，直接导出 app
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`服务器运行在 http://localhost:${port}`);
+  });
+}
 
 module.exports = app;
